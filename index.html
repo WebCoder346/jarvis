@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>J A R V I S</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .btn,
+    .btn1 {
+      font-size: 1.2rem;
+      border: none;
+      background: blue;
+      padding: 0.5rem 1rem;
+      border-radius: 0.8rem;
+      color: white;
+      margin: 1rem;
+    }
+
+    .outputBox {
+      height: 10rem;
+      width: 20rem;
+      background: green;
+      color: white;
+      border-radius: 1rem;
+      margin: 1rem;
+      padding: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <button class="btn1">Hello</button>
+  <button class="btn">Start Recogination</button>
+  <div class="outputBox">
+    Hello bhai
+  </div>
+  <script>
+    function speak(text) {
+      let textSpeak = new SpeechSynthesisUtterance(text);
+      textSpeak.rate = 1;
+      textSpeak.pitch = 1;
+      textSpeak.volume = 2;
+      window.speechSynthesis.speak(textSpeak);
+    }
+
+    const btn = document.querySelector(".btn");
+    document.querySelector(".btn1").addEventListener("click", (e) => {
+      e.stopPropagation();
+      speak("Hello saurav, how can i help you");
+    })
+
+    let speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition = new speech();
+
+    recognition.onresult = (event) => {
+      console.log(event);
+    }
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      recognition.start();
+    })
+  </script>
+</body>
+
+  </html>
